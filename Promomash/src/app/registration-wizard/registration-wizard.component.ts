@@ -59,40 +59,46 @@ export class RegistrationWizardComponent {
         ...this.step1Form.value,
         ...this.step2Form.value,
       };
-      // Save the data using an AJAX call
+      // Save the data using an AJAX call to backend API
       this.http
-        .post('/api/registration', registrationData)
-        .subscribe((response) => {
-          console.log('Registration successful', response);
-        });
+        .post(`https://localhost:7232/Registration`, registrationData)
+        .subscribe(
+          (response) => {
+            console.log('Registration successful', response);
+          },
+          (error) => {
+            console.error('Registration failed', error);
+          }
+        );
     } else {
       this.step2Form.markAllAsTouched();
     }
   }
 
   loadCountries() {
-    // Fake data loading
-    this.countries = [
-      { id: 1, name: 'Country 1' },
-      { id: 2, name: 'Country 2' },
-    ];
+    // Load countries from backend API
+    this.http.get(`https://localhost:7232/Registration/countries`).subscribe(
+      (data: any) => {
+        this.countries = data;
+      },
+      (error) => {
+        console.error('Failed to load countries', error);
+      }
+    );
   }
 
   loadProvinces(countryId: number) {
-    console.log(countryId == 1);
-    if (countryId == 1) {
-      this.provinces = [
-        { id: '1.1', name: 'Province 1.1' },
-        { id: '1.2', name: 'Province 1.2' },
-      ];
-    } else if (countryId == 2) {
-      this.provinces = [
-        { id: '2.1', name: 'Province 2.1' },
-        { id: '2.2', name: 'Province 2.2' },
-      ];
-    }
-
-    console.log(this.provinces);
+    // Load provinces from backend API
+    this.http
+      .get(`https://localhost:7232/Registration/provinces/${countryId}`)
+      .subscribe(
+        (data: any) => {
+          this.provinces = data;
+        },
+        (error) => {
+          console.error('Failed to load provinces', error);
+        }
+      );
   }
 
   onCountryChange() {
