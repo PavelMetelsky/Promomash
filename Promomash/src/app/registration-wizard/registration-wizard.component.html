@@ -1,0 +1,78 @@
+<div class="form-container">
+  <h2 class="form-title">Step 1</h2>
+  <form [formGroup]="step1Form" (ngSubmit)="nextStep()">
+    <div class="form-field">
+      <label for="login">Login</label>
+      <input id="login" formControlName="login" placeholder="Enter your email" type="email">
+      <div class="error-message" *ngIf="step1Form.get('login')?.hasError('required')">
+        Login is required
+      </div>
+      <div class="error-message" *ngIf="step1Form.get('login')?.hasError('email')">
+        Please enter a valid email
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input id="password" formControlName="password" placeholder="Enter your password" type="password">
+      <div class="error-message" *ngIf="step1Form.get('password')?.hasError('required')">
+        Password is required
+      </div>
+      <div class="error-message" *ngIf="step1Form.get('password')?.hasError('pattern')">
+        Password must contain at least one letter and one digit
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="confirmPassword">Confirm Password</label>
+      <input id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm your password" type="password">
+      <div class="error-message" *ngIf="step1Form.get('confirmPassword')?.hasError('required')">
+        Confirm password is required
+      </div>
+      <div class="error-message" *ngIf="step1Form.hasError('notMatching')">
+        Passwords do not match
+      </div>
+    </div>
+
+    <div class="checkbox-container">
+      <input id="agree" type="checkbox" formControlName="agree">
+      <label for="agree">I agree to work for food</label>
+    </div>
+    <div class="error-message" *ngIf="step1Form.get('agree')?.hasError('required')">
+      You must agree to continue
+    </div>
+
+    <div class="button-container">
+      <button class="button" type="submit">Go to step 2</button>
+    </div>
+  </form>
+</div>
+
+<div class="form-container" *ngIf="step === 2">
+  <h2 class="form-title">Step 2</h2>
+  <form [formGroup]="step2Form" (ngSubmit)="save()">
+    <div class="form-field">
+      <label for="country">Country</label>
+      <select id="country" formControlName="country" (change)="onCountryChange()">
+        <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
+      </select>
+      <div class="error-message" *ngIf="step2Form.get('country')?.hasError('required')">
+        Country is required
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="province">Province</label>
+      <select id="province" formControlName="province">
+        <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
+      </select>
+      <div class="error-message" *ngIf="step2Form.get('province')?.hasError('required')">
+        Province is required
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button class="button" type="submit">Save</button>
+    </div>
+  </form>
+</div>

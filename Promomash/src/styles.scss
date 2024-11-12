@@ -1,0 +1,168 @@
+// Глобальные стили для приложения с адаптацией под мобильные устройства
+
+$primary-color: #5a2dbf;
+$secondary-color: #36b44a;
+$background-color: #f5f5f5;
+$text-color: #333;
+$link-color: #5a2dbf;
+$error-color: #e53935;
+$input-border-color: #ccc;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.button {
+  display: inline-block;
+  background-color: $secondary-color;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  margin-bottom: 1rem;
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-bottom: 1.5rem;
+}
+
+.form-field {
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-weight: 500;
+    color: $text-color;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid $input-border-color;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+    }
+  }
+
+  .error-message {
+    color: $error-color;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  input[type="checkbox"] {
+    margin-right: 0.5rem;
+  }
+
+  label {
+    color: $text-color;
+    font-size: 0.875rem;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 768px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .form-container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .button {
+    padding: 0.5rem 1rem;
+  }
+}
