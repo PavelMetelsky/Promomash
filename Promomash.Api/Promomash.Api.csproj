@@ -27,8 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Promomash.Database\Promomash.Database.csproj" />
-    <ProjectReference Include="..\Promomash.Entities\Promomash.Entities.csproj" />
+    <ProjectReference Include="..\Promomash.Core\Promomash.Core.csproj" />
   </ItemGroup>
 
 </Project>

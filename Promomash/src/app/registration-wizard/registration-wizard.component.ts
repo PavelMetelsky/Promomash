@@ -62,14 +62,14 @@ export class RegistrationWizardComponent {
       // Save the data using an AJAX call to backend API
       this.http
         .post(`https://localhost:7232/Registration`, registrationData)
-        .subscribe(
-          (response) => {
+        .subscribe({
+          next: (response) => {
             console.log('Registration successful', response);
           },
-          (error) => {
+          error: (error) => {
             console.error('Registration failed', error);
-          }
-        );
+          },
+        });
     } else {
       this.step2Form.markAllAsTouched();
     }
@@ -77,28 +77,28 @@ export class RegistrationWizardComponent {
 
   loadCountries() {
     // Load countries from backend API
-    this.http.get(`https://localhost:7232/Registration/countries`).subscribe(
-      (data: any) => {
+    this.http.get(`https://localhost:7232/Registration/countries`).subscribe({
+      next: (data: any) => {
         this.countries = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Failed to load countries', error);
-      }
-    );
+      },
+    });
   }
 
   loadProvinces(countryId: number) {
     // Load provinces from backend API
     this.http
       .get(`https://localhost:7232/Registration/provinces/${countryId}`)
-      .subscribe(
-        (data: any) => {
+      .subscribe({
+        next: (data: any) => {
           this.provinces = data;
         },
-        (error) => {
+        error: (error) => {
           console.error('Failed to load provinces', error);
-        }
-      );
+        },
+      });
   }
 
   onCountryChange() {

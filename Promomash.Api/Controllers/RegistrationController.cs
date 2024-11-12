@@ -1,6 +1,7 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Promomash.Database;
-using Promomash.Entities.User;
+using Promomash.Core.Commands.CreateUser;
+using Promomash.Core.Queries.GetUsers;
 
 namespace Promomash.Api.Controllers
 {
@@ -8,23 +9,34 @@ namespace Promomash.Api.Controllers
     [Route("[controller]")]
     public class RegistrationController : ControllerBase
     {
-        private readonly PromomashContext _context;
+        private readonly IMediator _mediator;
 
-        public RegistrationController(PromomashContext context)
+        public RegistrationController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public ActionResult RegisterUser(User user)
+        public async Task<ActionResult> RegisterUserAsync([FromBody] CreateUserCommand command)
         {
             if (ModelState.IsValid)
             {
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                await _mediator.Send(command);
+
                 return Ok(new { message = "Registration successful" });
             }
             return BadRequest(ModelState);
+        }
+
+        [HttpGet("users")]
+        public async Task<ActionResult<IEnumerable<GetUsersResponse>>> GetUsersAsync()
+        {
+            var users = await _mediator.Send(new GetUsersQuery());
+            if (users == null || users.Count == 0)
+            {
+                return NotFound(new { message = "No users found" });
+            }
+            return Ok(users);
         }
 
         [HttpGet("countries")]

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+using Promomash.Core.Commands.CreateUser;
+using Promomash.Core.Queries.GetUsers;
 using Promomash.Database;
 
 var MyAllowSpecificOrigins = "MyPolicy";
@@ -23,11 +24,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PromomashContext>(options
-     // => options.UseNpgsql("name=ConnectionStrings:SampleDbConnection"));
-=> options.UseNpgsql(builder.Configuration.GetConnectionString("SampleDbConnection"), b => b.MigrationsAssembly("Promomash.Database")));
+    => options.UseNpgsql(builder.Configuration.GetConnectionString("SampleDbConnection"), b => b.MigrationsAssembly("Promomash.Database")));
 
-////=> options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
-//builder.Services.AddMediatR(typeof(User));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateUserHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetUsersQueryHandler).Assembly));
 
 var app = builder.Build();
 

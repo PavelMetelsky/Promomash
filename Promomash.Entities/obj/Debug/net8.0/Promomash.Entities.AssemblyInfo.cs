@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Promomash.Entities")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5e0f2d557b42f48c753813d10fead6b28d8bb1c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98fc5d209e4a7ea0f18b3568f96ace55a0ca71cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Promomash.Entities")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Promomash.Entities")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
