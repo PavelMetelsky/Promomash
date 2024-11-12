@@ -1,0 +1,12 @@
+C:\Dev\Promomash\Promomash.Core\bin\Debug\net8.0\Promomash.Core.deps.json
+C:\Dev\Promomash\Promomash.Core\bin\Debug\net8.0\Promomash.Core.dll
+C:\Dev\Promomash\Promomash.Core\bin\Debug\net8.0\Promomash.Core.pdb
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.AssemblyInfoInputs.cache
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.AssemblyInfo.cs
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.csproj.CoreCompileInputs.cache
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.sourcelink.json
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.dll
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\refint\Promomash.Core.dll
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\Promomash.Core.pdb
+C:\Dev\Promomash\Promomash.Core\obj\Debug\net8.0\ref\Promomash.Core.dll
