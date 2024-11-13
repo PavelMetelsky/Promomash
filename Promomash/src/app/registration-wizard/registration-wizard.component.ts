@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { AccountService } from './account.service';
 
 @Component({
   selector: 'app-registration-wizard',
@@ -14,7 +14,7 @@ export class RegistrationWizardComponent {
   countries: any[] = [];
   provinces: any[] = [];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private accountService: AccountService) {
     this.step1Form = this.fb.group(
       {
         login: ['', [Validators.required, Validators.email]],
@@ -55,13 +55,12 @@ export class RegistrationWizardComponent {
 
   save() {
     if (this.step2Form.valid) {
-      const registrationData = {
+      const registrationData:IUserDetails = {
         ...this.step1Form.value,
         ...this.step2Form.value,
       };
       // Save the data using an AJAX call to backend API
-      this.http
-        .post(`https://localhost:7232/Registration`, registrationData)
+      this.accountService.saveUser(registrationData)
         .subscribe({
           next: (response) => {
             console.log('Registration successful', response);
@@ -77,7 +76,7 @@ export class RegistrationWizardComponent {
 
   loadCountries() {
     // Load countries from backend API
-    this.http.get(`https://localhost:7232/Registration/countries`).subscribe({
+    this.accountService.getCountries().subscribe({
       next: (data: any) => {
         this.countries = data;
       },
@@ -89,8 +88,7 @@ export class RegistrationWizardComponent {
 
   loadProvinces(countryId: number) {
     // Load provinces from backend API
-    this.http
-      .get(`https://localhost:7232/Registration/provinces/${countryId}`)
+    this.accountService.getCountryProvinces(countryId)
       .subscribe({
         next: (data: any) => {
           this.provinces = data;
